@@ -85,6 +85,16 @@ Plugin 'mpollmeier/vim-scalaConceal'
 
 Plugin 'gre/play2vim'
 
+Plugin 'fatih/vim-go'
+
+Plugin 'StanAngeloff/php.vim'
+
+Plugin 'nathanaelkane/vim-indent-guides'
+
+Plugin 'gorodinskiy/vim-coloresque'
+
+Plugin 'hail2u/vim-css3-syntax'
+
 " 256 Colors
 set t_Co=256
 " colorscheme jellybeans
@@ -134,6 +144,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:scala_sort_across_groups=1
 
+" let g:php_syntax_extensions_enabled
+" let b:php_syntax_extensions_enabled
+
 noremap <leader>a :Ack
 noremap <leader>A :AckFromSearch<CR>
 noremap <leader>u :GundoToggle<CR>
@@ -162,3 +175,15 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Put at the very end of your .vimrc file.
+"
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
